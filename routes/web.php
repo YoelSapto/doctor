@@ -1,7 +1,15 @@
 <?php
 
+use App\Http\Controllers\Backsite\ConfigPaymentController;
+use App\Http\Controllers\Backsite\ConsultationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backsite\DashboardController;
+use App\Http\Controllers\Backsite\DoctorController;
+use App\Http\Controllers\Backsite\HospitalPatientController;
+use App\Http\Controllers\Backsite\PermissionController;
+use App\Http\Controllers\Backsite\RoleController;
+use App\Http\Controllers\Backsite\SpecialistController;
+use App\Http\Controllers\Backsite\TypeUserController;
 use App\Http\Controllers\Fronsite\LandingController;
 use App\Http\Controllers\Fronsite\PaymentController;
 use App\Http\Controllers\Fronsite\AppointmentController;
@@ -22,6 +30,17 @@ Route::resource('/', LandingController::class);
 // prefix('admin/dashboard')->namespace('Admin')
 Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('dashboard', DashboardController::class);
+    Route::resource('typeuser', TypeUserController::class);
+    // permission
+    Route::resource('permission', PermissionController::class);
+    // role
+    Route::resource('role', RoleController::class);
+    Route::resource('specialist', SpecialistController::class);
+    Route::resource('config_payment', ConfigPaymentController::class);
+    Route::resource('consultation', ConsultationController::class);
+    Route::resource('doctor', DoctorController::class);
+    Route::resource('hospital_patient', HospitalPatientController::class);
+    // Route::resource('hospital_patient', HospitalPatientController::class);
 });
 
 

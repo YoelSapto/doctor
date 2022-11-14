@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Role;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRoleRequest extends FormRequest
@@ -13,7 +14,7 @@ class UpdateRoleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,9 @@ class UpdateRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => [
+                'required', 'string', 'max:255', Rule::unique('role')->ignore($this->role),
+            ],
         ];
     }
 }

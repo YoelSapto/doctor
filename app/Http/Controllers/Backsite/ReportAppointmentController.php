@@ -3,17 +3,15 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
-use App\Models\Masterdata\TypeUser;
+use App\Models\Operational\Appointment;
 use Illuminate\Http\Request;
 
-class TypeUserController extends Controller
+class ReportAppointmentController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +19,8 @@ class TypeUserController extends Controller
      */
     public function index()
     {
-        $type_user = TypeUser::orderby('created_at', 'DESC')->limit(3)->get();
-
-        return view('pages.backsite.management-access.type_user.index', compact('type_user'));
+        $appointment = Appointment::orderby('created_at', 'desc')->get();
+        return view('pages.backsite.operational.appointment.index', compact('appointment'));
     }
 
     /**

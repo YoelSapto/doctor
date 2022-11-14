@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Backsite;
 
-use App\Http\Controllers\Controller;
-use App\Models\Masterdata\TypeUser;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\ManagementAccess\Permission;
+use App\Models\ManagementAccess\PermissionRole;
+use App\Models\ManagementAccess\Role;
+use App\Models\ManagementAccess\RoleUser;
 
-class TypeUserController extends Controller
+class PermissionController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +22,9 @@ class TypeUserController extends Controller
      */
     public function index()
     {
-        $type_user = TypeUser::orderby('created_at', 'DESC')->limit(3)->get();
+        $permission = Permission::orderBy('id', 'asc')->get();
 
-        return view('pages.backsite.management-access.type_user.index', compact('type_user'));
+        return view('pages.backsite.management-access.permission.index', compact('permission'));
     }
 
     /**
@@ -33,7 +34,7 @@ class TypeUserController extends Controller
      */
     public function create()
     {
-        abort(404);
+        return abort(404);
     }
 
     /**
@@ -44,7 +45,7 @@ class TypeUserController extends Controller
      */
     public function store(Request $request)
     {
-        abort(404);
+        return abort(404);
     }
 
     /**
@@ -55,7 +56,7 @@ class TypeUserController extends Controller
      */
     public function show($id)
     {
-        abort(404);
+        return abort(404);
     }
 
     /**
@@ -66,7 +67,7 @@ class TypeUserController extends Controller
      */
     public function edit($id)
     {
-        abort(404);
+        return abort(404);
     }
 
     /**
@@ -78,7 +79,7 @@ class TypeUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        abort(404);
+        return abort(404);
     }
 
     /**
@@ -89,6 +90,6 @@ class TypeUserController extends Controller
      */
     public function destroy($id)
     {
-        abort(404);
+        return abort(404);
     }
 }

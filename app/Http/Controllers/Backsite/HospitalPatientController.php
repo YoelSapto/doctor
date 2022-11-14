@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers\Backsite;
 
-use App\Http\Controllers\Controller;
-use App\Models\Masterdata\TypeUser;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class TypeUserController extends Controller
+class HospitalPatientController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +15,11 @@ class TypeUserController extends Controller
      */
     public function index()
     {
-        $type_user = TypeUser::orderby('created_at', 'DESC')->limit(3)->get();
+        $hospital_patient = User::whereHas('detail_user', function (Builder $query) {
+            $query->where('type_user_id', 3);
+        })->orderBy('created_at', 'desc')->get();
 
-        return view('pages.backsite.management-access.type_user.index', compact('type_user'));
+        return view('pages.backsite.operational.hospital.patient.index', compact('hospital_patient'));
     }
 
     /**
@@ -33,7 +29,7 @@ class TypeUserController extends Controller
      */
     public function create()
     {
-        abort(404);
+        //
     }
 
     /**
@@ -44,7 +40,7 @@ class TypeUserController extends Controller
      */
     public function store(Request $request)
     {
-        abort(404);
+        //
     }
 
     /**
@@ -55,7 +51,7 @@ class TypeUserController extends Controller
      */
     public function show($id)
     {
-        abort(404);
+        //
     }
 
     /**
@@ -66,7 +62,7 @@ class TypeUserController extends Controller
      */
     public function edit($id)
     {
-        abort(404);
+        //
     }
 
     /**
@@ -78,7 +74,7 @@ class TypeUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        abort(404);
+        //
     }
 
     /**
@@ -89,6 +85,6 @@ class TypeUserController extends Controller
      */
     public function destroy($id)
     {
-        abort(404);
+        //
     }
 }

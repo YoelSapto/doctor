@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Backsite;
 
-use App\Http\Controllers\Controller;
-use App\Models\Masterdata\TypeUser;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Masterdata\ConfigPayment;
+use App\Http\Requests\ConfigPayment\UpdateConfigPaymentRequest;
 
-class TypeUserController extends Controller
+class ConfigPaymentController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,9 +21,9 @@ class TypeUserController extends Controller
      */
     public function index()
     {
-        $type_user = TypeUser::orderby('created_at', 'DESC')->limit(3)->get();
+        $config_payment = ConfigPayment::all();
 
-        return view('pages.backsite.management-access.type_user.index', compact('type_user'));
+        return view('pages.backsite.master-data.config-payment.index', compact('config_payment'));
     }
 
     /**
@@ -64,9 +64,9 @@ class TypeUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ConfigPayment $config_payment)
     {
-        abort(404);
+        return view('pages.backsite.master-data.config-payment.edit', compact('config_payment'));
     }
 
     /**
@@ -76,9 +76,14 @@ class TypeUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateConfigPaymentRequest $request, ConfigPayment $config_payment)
     {
-        abort(404);
+        $data = $request->all();
+
+        $config_payment->update($data);
+
+        alert()->success('Success Message', 'Succesfully update new config');
+        return redirect()->route('backsite.config_payment.index');
     }
 
     /**

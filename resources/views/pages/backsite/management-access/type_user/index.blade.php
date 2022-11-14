@@ -13,17 +13,20 @@
         {{-- breadcumb --}}
         <div class="content-header row">
             <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-                <h3 class="content-header-title mb-0 d-inline-block">Permission</h3>
+                <h3 class="content-header-title mb-0 d-inline-block">Type User</h3>
                 <div class="row breadcrumbs-top d-inline-block">
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Dashboard</li>
-                            <li class="breadcrumb-item active">Permission User</li>
+                            <li class="breadcrumb-item active">Type User</li>
                         </ol>
                     </div>
                 </div>
             </div>
         </div>
+
+        {{-- table card --}}
+
         <div class="content-body">
             <section id="table-home">
                 <!-- Zero configuration table -->
@@ -50,21 +53,21 @@
                                             class="table table-striped table-bordered text-inputs-searching default-table">
                                             <thead>
                                                 <tr>
-                                                    <th>Permission</th>
+                                                    <th>Name</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse($permission as $key => $permission_item)
-                                                <tr data-entry-id="{{ $permission_item->id }}">
-                                                    <td>{{ $permission_item->title ?? '' }}</td>
+                                                @forelse($type_user as $key => $type_user_item)
+                                                <tr data-entry-id="{{ $type_user_item->id }}">
+                                                    <td>{{ $type_user_item->name ?? '' }}</td>
                                                 </tr>
                                                 @empty
-
+                                                {{-- not found --}}
                                                 @endforelse
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th>Permission</th>
+                                                    <th>Name</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -79,7 +82,10 @@
 
     </div>
 </div>
+<!-- END: Content-->
+
 @endsection
+
 @push('after-script')
 
 <script>

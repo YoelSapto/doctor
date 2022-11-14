@@ -14,7 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return 'Welcome To Admin Dashboard';
+        return view('pages.backsite.dashboard.index');
     }
 
     /**
